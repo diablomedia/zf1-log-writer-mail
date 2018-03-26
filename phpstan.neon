@@ -1,0 +1,5 @@
+parameters:
+    ignoreErrors:
+        - '#Casting to string something that.s already string\.#'
+        # Zend_Layout uses __get and __set
+        - '#Access to an undefined property Zend_Layout::\$events\.#'
