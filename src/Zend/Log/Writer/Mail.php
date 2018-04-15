@@ -98,9 +98,9 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
      */
     protected static $_methodMapHeaders = array(
         'from' => 'setFrom',
-        'to' => 'addTo',
-        'cc' => 'addCc',
-        'bcc' => 'addBcc',
+        'to'   => 'addTo',
+        'cc'   => 'addCc',
+        'bcc'  => 'addBcc',
     );
 
     /**
@@ -129,10 +129,10 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
      * @param  array|Zend_Config $config
      * @return Zend_Log_Writer_Mail
      */
-    static public function factory($config)
+    public static function factory($config)
     {
         $config = self::_parseConfig($config);
-        $mail = self::_constructMailFromConfig($config);
+        $mail   = self::_constructMailFromConfig($config);
         $writer = new self($mail);
 
         if (isset($config['layout']) || isset($config['layoutOptions'])) {
@@ -207,7 +207,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
                         $address['email'],
                         $address['name']
                     );
-                } else if (is_array($address) && isset($address['email'])) {
+                } elseif (is_array($address) && isset($address['email'])) {
                     $params = array($address['email']);
                 } else {
                     $params = array($address);
@@ -229,12 +229,12 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
     protected function _constructLayoutFromConfig(array $config)
     {
         $config = array_merge(array(
-            'layout' => 'Zend_Layout',
+            'layout'        => 'Zend_Layout',
             'layoutOptions' => null
         ), $config);
 
         $layoutClass = $config['layout'];
-        $layout = new $layoutClass($config['layoutOptions']);
+        $layout      = new $layoutClass($config['layoutOptions']);
         if (!$layout instanceof Zend_Layout) {
             throw new Zend_Log_Exception($layout . 'must extend Zend_Layout');
         }
@@ -305,7 +305,8 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
         if (!$this->_layout) {
             throw new Zend_Log_Exception(
                 'cannot set formatter for layout; ' .
-                    'a Zend_Layout instance is not in use');
+                    'a Zend_Layout instance is not in use'
+            );
         }
 
         $this->_layoutFormatter = $formatter;
@@ -330,7 +331,8 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
         if ($this->_mail->getSubject()) {
             throw new Zend_Log_Exception(
                 'subject already set on mail; ' .
-                    'cannot set subject prepend text');
+                    'cannot set subject prepend text'
+            );
         }
 
         $this->_subjectPrependText = (string) $subject;
@@ -356,7 +358,8 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
             // line and set it on the Zend_Mail object.
             $numEntries = $this->_getFormattedNumEntriesPerPriority();
             $this->_mail->setSubject(
-                "{$this->_subjectPrependText} ({$numEntries})");
+                "{$this->_subjectPrependText} ({$numEntries})"
+            );
         }
 
 
@@ -377,12 +380,13 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
                 $this->_mail->setBodyHtml($this->_layout->render());
             } catch (Exception $e) {
                 trigger_error(
-                    "exception occurred when rendering layout; " .
-                        "unable to set html body for message; " .
+                    'exception occurred when rendering layout; ' .
+                        'unable to set html body for message; ' .
                         "message = {$e->getMessage()}; " .
                         "code = {$e->getCode()}; " .
-                        "exception class = " . get_class($e),
-                    E_USER_NOTICE);
+                        'exception class = ' . get_class($e),
+                    E_USER_NOTICE
+                );
             }
         }
 
@@ -393,11 +397,12 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
             $this->_mail->send();
         } catch (Exception $e) {
             trigger_error(
-                "unable to send log entries via email; " .
+                'unable to send log entries via email; ' .
                     "message = {$e->getMessage()}; " .
                     "code = {$e->getCode()}; " .
-                        "exception class = " . get_class($e),
-                E_USER_WARNING);
+                        'exception class = ' . get_class($e),
+                E_USER_WARNING
+            );
         }
     }
 

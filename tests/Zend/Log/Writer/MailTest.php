@@ -173,7 +173,7 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
     public function testSetLayoutFormatter()
     {
         list(, $writer) = $this->_getSimpleLogger(true);
-        $return = $writer->setLayoutFormatter(new Zend_Log_Formatter_Simple());
+        $return         = $writer->setLayoutFormatter(new Zend_Log_Formatter_Simple());
         $this->assertSame($writer, $return);
     }
 
@@ -185,7 +185,7 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
     public function testGetLayoutFormatter()
     {
         list(, $writer) = $this->_getSimpleLogger(true);
-        $formatter = new Zend_Log_Formatter_Simple();
+        $formatter      = new Zend_Log_Formatter_Simple();
 
         // Ensure that fluent interface is present.
         $returnedWriter = $writer->setLayoutFormatter($formatter);
@@ -265,7 +265,7 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
     public function testFluentInterface()
     {
         list(, $writer) = $this->_getSimpleLogger(true);
-        $instance = $writer->setLayoutFormatter(new Zend_Log_Formatter_Simple())
+        $instance       = $writer->setLayoutFormatter(new Zend_Log_Formatter_Simple())
                            ->setSubjectPrependText('subject');
 
         $this->assertTrue($instance instanceof Zend_Log_Writer_Mail);
@@ -276,25 +276,25 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
      */
     public function testFactory()
     {
-    	$config = array(
-    		'from' => array(
-    		    'email' => 'log@test.framework.zend.com'
-    	    ),
-    		'to' => 'admin@domain.com',
-    		'subject' => '[error] exceptions on my application'
-    	);
+        $config = array(
+            'from' => array(
+                'email' => 'log@test.framework.zend.com'
+            ),
+            'to'      => 'admin@domain.com',
+            'subject' => '[error] exceptions on my application'
+        );
 
-    	$writer = Zend_Log_Writer_Mail::factory($config);
-    	$this->assertTrue($writer instanceof Zend_Log_Writer_Mail);
+        $writer = Zend_Log_Writer_Mail::factory($config);
+        $this->assertTrue($writer instanceof Zend_Log_Writer_Mail);
 
-    	$writer->write($this->_getEvent());
-    	$writer->shutdown();
+        $writer->write($this->_getEvent());
+        $writer->shutdown();
 
-    	$this->assertEquals('admin@domain.com', $this->_transport->recipients);
-    	$this->assertContains('an info message', $this->_transport->body);
-    	$this->assertContains('From: log@test.framework.zend.com', $this->_transport->header);
-    	$this->assertContains('To: admin@domain.com', $this->_transport->header);
-    	$this->assertContains('Subject: [error] exceptions on my application', $this->_transport->header);
+        $this->assertEquals('admin@domain.com', $this->_transport->recipients);
+        $this->assertContains('an info message', $this->_transport->body);
+        $this->assertContains('From: log@test.framework.zend.com', $this->_transport->header);
+        $this->assertContains('To: admin@domain.com', $this->_transport->header);
+        $this->assertContains('Subject: [error] exceptions on my application', $this->_transport->header);
     }
 
     /**
@@ -302,15 +302,15 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
      */
     public function testFactoryShouldSetSubjectPrependText()
     {
-    	$config = array(
-    		'subjectPrependText' => '[error] exceptions on my application'
-    	);
+        $config = array(
+            'subjectPrependText' => '[error] exceptions on my application'
+        );
 
-    	$writer = Zend_Log_Writer_Mail::factory($config);
-    	$writer->write($this->_getEvent());
-    	$writer->shutdown();
+        $writer = Zend_Log_Writer_Mail::factory($config);
+        $writer->write($this->_getEvent());
+        $writer->shutdown();
 
-    	$this->assertContains('Subject: [error] exceptions on my application (INFO=1)', $this->_transport->header);
+        $this->assertContains('Subject: [error] exceptions on my application (INFO=1)', $this->_transport->header);
     }
 
     /**
@@ -323,10 +323,10 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
             ->getMock();
         $config = array(
             'class' => 'Zend_Stub_Mail_Custom'
-    	);
+        );
 
-    	$writer = Zend_Log_Writer_Mail::factory($config);
-    	$this->assertTrue($writer instanceof Zend_Log_Writer_Mail);
+        $writer = Zend_Log_Writer_Mail::factory($config);
+        $this->assertTrue($writer instanceof Zend_Log_Writer_Mail);
     }
 
     /**
@@ -336,13 +336,13 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
     {
         $config = array(
             'charset' => 'UTF-8'
-    	);
+        );
 
-    	$writer = Zend_Log_Writer_Mail::factory($config);
-    	$writer->write($this->_getEvent());
-    	$writer->shutdown();
+        $writer = Zend_Log_Writer_Mail::factory($config);
+        $writer->write($this->_getEvent());
+        $writer->shutdown();
 
-    	$this->assertContains('Content-Type: text/plain; charset=UTF-8', $this->_transport->header);
+        $this->assertContains('Content-Type: text/plain; charset=UTF-8', $this->_transport->header);
     }
 
     /**
@@ -350,29 +350,29 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
      */
     public function testFactoryShouldAllowToSetMultipleRecipientsInArray()
     {
-    	$config = array(
-    		'to' => array(
-    		    'John Doe' => 'admin1@domain.com',
-    	        'admin2@domain.com'
-    	    ),
-    	    'cc' => array(
-    	        'bug@domain.com',
-    		    'project' => 'projectname@domain.com'
-    	    )
-    	);
+        $config = array(
+            'to' => array(
+                'John Doe' => 'admin1@domain.com',
+                'admin2@domain.com'
+            ),
+            'cc' => array(
+                'bug@domain.com',
+                'project' => 'projectname@domain.com'
+            )
+        );
 
-    	$writer = Zend_Log_Writer_Mail::factory($config);
-    	$writer->write($this->_getEvent());
-    	$writer->shutdown();
+        $writer = Zend_Log_Writer_Mail::factory($config);
+        $writer->write($this->_getEvent());
+        $writer->shutdown();
 
-    	$this->assertContains('admin1@domain.com', $this->_transport->recipients);
-    	$this->assertContains('admin2@domain.com', $this->_transport->recipients);
-    	$this->assertContains('bug@domain.com', $this->_transport->recipients);
-    	$this->assertContains('projectname@domain.com', $this->_transport->recipients);
-    	$this->assertContains('To: John Doe <admin1@domain.com>', $this->_transport->header);
-    	$this->assertContains('admin2@domain.com', $this->_transport->header);
-    	$this->assertContains('Cc: bug@domain.com', $this->_transport->header);
-    	$this->assertContains('project <projectname@domain.com>', $this->_transport->header);
+        $this->assertContains('admin1@domain.com', $this->_transport->recipients);
+        $this->assertContains('admin2@domain.com', $this->_transport->recipients);
+        $this->assertContains('bug@domain.com', $this->_transport->recipients);
+        $this->assertContains('projectname@domain.com', $this->_transport->recipients);
+        $this->assertContains('To: John Doe <admin1@domain.com>', $this->_transport->header);
+        $this->assertContains('admin2@domain.com', $this->_transport->header);
+        $this->assertContains('Cc: bug@domain.com', $this->_transport->header);
+        $this->assertContains('project <projectname@domain.com>', $this->_transport->header);
     }
 
     /**
@@ -380,15 +380,15 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
      */
     public function testFactoryWithLayout()
     {
-    	$config = array(
-    	    'layoutOptions' => array(
-    	        'layoutPath' => dirname(__FILE__) . '/_files'
-    	    )
-    	);
+        $config = array(
+            'layoutOptions' => array(
+                'layoutPath' => dirname(__FILE__) . '/_files'
+            )
+        );
 
-    	$writer = Zend_Log_Writer_Mail::factory($config);
-    	$writer->write($this->_getEvent());
-    	$writer->shutdown();
+        $writer = Zend_Log_Writer_Mail::factory($config);
+        $writer->write($this->_getEvent());
+        $writer->shutdown();
 
         $this->assertNotEmpty($this->_transport->boundary);
         $this->assertContains('Content-Type: multipart/', $this->_transport->header);
@@ -404,15 +404,15 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
      */
     public function testFactoryShouldSetLayoutFormatter()
     {
-    	$config = array(
-    	    'layoutOptions' => array(
-    	        'layoutPath' => '/path/to/layout/scripts'
-    	    ),
-    	    'layoutFormatter' => 'Zend_Log_Formatter_Simple'
-    	);
+        $config = array(
+            'layoutOptions' => array(
+                'layoutPath' => '/path/to/layout/scripts'
+            ),
+            'layoutFormatter' => 'Zend_Log_Formatter_Simple'
+        );
 
-    	$writer = Zend_Log_Writer_Mail::factory($config);
-    	$this->assertTrue($writer->getLayoutFormatter() instanceof Zend_Log_Formatter_Simple);
+        $writer = Zend_Log_Writer_Mail::factory($config);
+        $this->assertTrue($writer->getLayoutFormatter() instanceof Zend_Log_Formatter_Simple);
     }
 
     /**
@@ -423,12 +423,12 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
         $this->getMockBuilder('Zend_Layout')
             ->setMockClassName('Zend_Stub_Layout_Custom')
             ->getMock();
-    	$config = array(
-    	    'layout' => 'Zend_Stub_Layout_Custom'
-    	);
+        $config = array(
+            'layout' => 'Zend_Stub_Layout_Custom'
+        );
 
-    	$writer = Zend_Log_Writer_Mail::factory($config);
-    	$this->assertTrue($writer instanceof Zend_Log_Writer_Mail);
+        $writer = Zend_Log_Writer_Mail::factory($config);
+        $this->assertTrue($writer instanceof Zend_Log_Writer_Mail);
     }
 
     /**
@@ -446,7 +446,7 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
         // Get a mock object for Zend_Mail so that no emails are actually
         // sent.
         $mail = $this->getMockBuilder('Zend_Mail')
-            ->setMethods(['send'])
+            ->setMethods(array('send'))
             ->getMock();
 
         // The send() method can be called any number of times.
@@ -460,7 +460,7 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
         // layout files being in place.
         if ($useLayout) {
             $layout = $this->getMockBuilder('Zend_Layout')
-                ->setMethods(['render'])
+                ->setMethods(array('render'))
                 ->getMock();
             $writer = new Zend_Log_Writer_Mail($mail, $layout);
         } else {
@@ -482,10 +482,10 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
     protected function _getEvent()
     {
         return array(
-    	    'timestamp'    => date('c'),
+            'timestamp'    => date('c'),
             'message'      => 'an info message',
             'priority'     => 6,
             'priorityName' => 'INFO'
-    	);
+        );
     }
 }

@@ -1,4 +1,7 @@
 parameters:
+    excludes_analyse:
+        - %rootDir%/../../../tests/*
+        - %rootDir%/../../../vendor/*
     ignoreErrors:
         - '#Casting to string something that.s already string\.#'
         # Zend_Layout uses __get and __set
