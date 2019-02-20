@@ -62,14 +62,14 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
     /**
      * Zend_Layout instance to use; optional.
      *
-     * @var Zend_Layout
+     * @var Zend_Layout|null
      */
     protected $_layout;
 
     /**
      * Optional formatter for use when rendering with Zend_Layout.
      *
-     * @var Zend_Log_Formatter_Interface
+     * @var Zend_Log_Formatter_Interface|null
      */
     protected $_layoutFormatter;
 
@@ -179,7 +179,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
      */
     protected static function _constructMailFromConfig(array $config)
     {
-        $mailClass = 'Zend_Mail';
+        $mailClass = Zend_Mail::class;
         if (isset($config['mail'])) {
             $mailClass = $config['mail'];
         }
