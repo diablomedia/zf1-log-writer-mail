@@ -10,5 +10,5 @@ parameters:
         # Zend_Layout uses __get and __set
         - '#Access to an undefined property Zend_Layout::\$events\.#'
         -
-            message: '#Parameter \#1 \$function of function call_user_func_array expects callable\(\): mixed, array\(Zend_Mail, mixed\) given\.#'
+            message: '#Parameter \#1 \$(function|callback) of function call_user_func_array expects callable\(\): mixed, array\(Zend_Mail, mixed\) given\.#'
             path: %currentWorkingDirectory%/src/Zend/Log/Writer/Mail.php
