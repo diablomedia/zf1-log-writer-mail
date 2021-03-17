@@ -30,7 +30,7 @@
         "phpstan/phpstan": "0.12.81",
         "diablomedia/zendframework1-view-helper-layout": "^1.0",
         "friendsofphp/php-cs-fixer": "2.18.3",
-        "maglnet/composer-require-checker": "^1.1.0 || ^2.0.0",
+        "maglnet/composer-require-checker": "^1.1.0 || ^2.0.0 || ^3.0.0",
         "phpro/grumphp-shim": "^0.22.0 || ^1.1"
     },
     "archive": {
