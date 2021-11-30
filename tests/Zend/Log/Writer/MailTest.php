@@ -231,7 +231,7 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
         // Log an error message so that there's something to send via email.
         $log->err('a bogus error message to force mail sending');
 
-        $this->expectException('PHPUnit\Framework\Error\Error');
+        $this->expectError('PHPUnit\Framework\Error\Error');
         unset($log);
     }
 
@@ -255,7 +255,7 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
         // Log an error message so that there's something to send via email.
         $log->err('a bogus error message to force mail sending');
 
-        $this->expectException('PHPUnit\Framework\Error\Error');
+        $this->expectError('PHPUnit\Framework\Error\Error');
         unset($log);
     }
 

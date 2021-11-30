@@ -139,6 +139,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
             $writer->setLayout($config);
         }
         if (isset($config['layoutFormatter'])) {
+            /** @var Zend_Log_Formatter_Interface $layoutFormatter */
             $layoutFormatter = new $config['layoutFormatter'];
             $writer->setLayoutFormatter($layoutFormatter);
         }
