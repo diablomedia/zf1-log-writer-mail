@@ -10,7 +10,7 @@
     "license": "BSD-3-Clause",
     "prefer-stable": true,
     "require": {
-        "php": "^7.4 || ~8.0 || ~8.1",
+        "php": "^7.4 || ~8.0.0 || ~8.1.0",
         "diablomedia/zendframework1-layout": "^1.0.3",
         "diablomedia/zendframework1-mail": "^1.0.0",
         "diablomedia/zendframework1-log": "^1.0.0"
