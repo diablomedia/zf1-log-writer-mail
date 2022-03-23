@@ -29,7 +29,7 @@
         "phpunit/phpunit": "^9.5.10",
         "phpstan/phpstan": "1.4.10",
         "diablomedia/zendframework1-view-helper-layout": "^1.0",
-        "friendsofphp/php-cs-fixer": "3.6.0",
+        "friendsofphp/php-cs-fixer": "3.8.0",
         "maglnet/composer-require-checker": "^3.0.0",
         "phpro/grumphp-shim": "^1.5.0"
     },
