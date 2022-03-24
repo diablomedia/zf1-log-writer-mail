@@ -268,7 +268,7 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
         $instance       = $writer->setLayoutFormatter(new Zend_Log_Formatter_Simple())
                            ->setSubjectPrependText('subject');
 
-        $this->assertTrue($instance instanceof Zend_Log_Writer_Mail);
+        $this->assertInstanceOf(Zend_Log_Writer_Mail::class, $instance);
     }
 
     /**
@@ -285,7 +285,7 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
         );
 
         $writer = Zend_Log_Writer_Mail::factory($config);
-        $this->assertTrue($writer instanceof Zend_Log_Writer_Mail);
+        $this->assertInstanceOf(Zend_Log_Writer_Mail::class, $writer);
 
         $writer->write($this->_getEvent());
         $writer->shutdown();
@@ -326,7 +326,7 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
         );
 
         $writer = Zend_Log_Writer_Mail::factory($config);
-        $this->assertTrue($writer instanceof Zend_Log_Writer_Mail);
+        $this->assertInstanceOf(Zend_Log_Writer_Mail::class, $writer);
     }
 
     /**
@@ -428,7 +428,7 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
         );
 
         $writer = Zend_Log_Writer_Mail::factory($config);
-        $this->assertTrue($writer instanceof Zend_Log_Writer_Mail);
+        $this->assertInstanceOf(Zend_Log_Writer_Mail::class, $writer);
     }
 
     /**
