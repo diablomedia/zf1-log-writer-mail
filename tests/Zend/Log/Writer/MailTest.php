@@ -220,6 +220,10 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
      */
     public function testDestructorMailError()
     {
+        set_error_handler(static function (int $errno, string $errstr): never {
+            throw new \Exception($errstr, $errno);
+        }, E_USER_WARNING);
+
         list($mail, $writer, $log) = $this->_getSimpleLogger(false);
 
         // Force the send() method to throw the same exception that would be
@@ -231,8 +235,10 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
         // Log an error message so that there's something to send via email.
         $log->err('a bogus error message to force mail sending');
 
-        $this->expectError('PHPUnit\Framework\Error\Error');
+        $this->expectException(\Exception::class);
         unset($log);
+
+        restore_error_handler();
     }
 
     /**
@@ -244,6 +250,10 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
      */
     public function testDestructorLayoutError()
     {
+        set_error_handler(static function (int $errno, string $errstr): never {
+            throw new \Exception($errstr, $errno);
+        }, E_USER_NOTICE);
+
         list($mail, $writer, $log, $layout) = $this->_getSimpleLogger(true);
 
         // Force the render() method to throw the same exception that would
@@ -255,8 +265,10 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
         // Log an error message so that there's something to send via email.
         $log->err('a bogus error message to force mail sending');
 
-        $this->expectError('PHPUnit\Framework\Error\Error');
+        $this->expectException(\Exception::class);
         unset($log);
+
+        restore_error_handler();
     }
 
     /**

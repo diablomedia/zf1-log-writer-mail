@@ -190,7 +190,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
         }
         $mail = new $mailClass($config['charset']);
         if (!$mail instanceof Zend_Mail) {
-            throw new Zend_Log_Exception($mail . 'must extend Zend_Mail');
+            throw new Zend_Log_Exception(get_class($mail) . ' must extend Zend_Mail');
         }
 
         if (isset($config['subject'])) {
@@ -237,7 +237,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
         $layoutClass = $config['layout'];
         $layout      = new $layoutClass($config['layoutOptions']);
         if (!$layout instanceof Zend_Layout) {
-            throw new Zend_Log_Exception($layout . 'must extend Zend_Layout');
+            throw new Zend_Log_Exception(get_class($layout) . ' must extend Zend_Layout');
         }
 
         return $layout;
