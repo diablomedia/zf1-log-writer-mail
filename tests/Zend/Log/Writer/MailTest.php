@@ -458,7 +458,7 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
         // Get a mock object for Zend_Mail so that no emails are actually
         // sent.
         $mail = $this->getMockBuilder('Zend_Mail')
-            ->setMethods(array('send'))
+            ->onlyMethods(array('send'))
             ->getMock();
 
         // The send() method can be called any number of times.
@@ -472,7 +472,7 @@ class Zend_Log_Writer_MailTest extends PHPUnit\Framework\TestCase
         // layout files being in place.
         if ($useLayout) {
             $layout = $this->getMockBuilder('Zend_Layout')
-                ->setMethods(array('render'))
+                ->onlyMethods(array('render'))
                 ->getMock();
             $writer = new Zend_Log_Writer_Mail($mail, $layout);
         } else {
