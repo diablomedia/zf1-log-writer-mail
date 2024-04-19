@@ -9,12 +9,11 @@
     "homepage": "http://framework.zend.com/",
     "license": "BSD-3-Clause",
     "prefer-stable": true,
-    "minimum-stability": "dev",
     "require": {
         "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0",
-        "diablomedia/zendframework1-layout": "dev-php83 as 1.0.3",
-        "diablomedia/zendframework1-mail": "dev-php83 as 1.0.0",
-        "diablomedia/zendframework1-log": "dev-php83 as 1.0.0"
+        "diablomedia/zendframework1-layout": "^1.0.5",
+        "diablomedia/zendframework1-mail": "^1.0.5",
+        "diablomedia/zendframework1-log": "^1.0.5"
     },
     "autoload": {
         "classmap": [
@@ -30,7 +29,7 @@
         "phpunit/phpunit": "^9.6.19 || ^10.5.18",
         "phpstan/phpstan": "1.10.67",
         "friendsofphp/php-cs-fixer": "3.54.0",
-        "diablomedia/zendframework1-view-helper-layout": "*",
+        "diablomedia/zendframework1-view-helper-layout": ">=1.0.4",
         "maglnet/composer-require-checker": "^3.0.0",
         "phpro/grumphp-shim": "^2.0.0"
     },
