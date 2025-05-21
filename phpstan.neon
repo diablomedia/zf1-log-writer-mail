@@ -1,12 +1,14 @@
 parameters:
-    checkMissingIterableValueType: false
     level: 8
+    treatPhpDocTypesAsCertain: false
     paths:
         - ./
     excludePaths:
         - %rootDir%/../../../tests/*
         - %rootDir%/../../../vendor/*
     ignoreErrors:
+        -
+            identifier: missingType.iterableValue
         # Zend_Layout uses __get and __set
         - '#Access to an undefined property Zend_Layout::\$events\.#'
         -
