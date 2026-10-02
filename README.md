@@ -6,4 +6,7 @@
 [![Total Downloads](https://poser.pugx.org/diablomedia/zendframework1-log-writer-mail/downloads)](https://packagist.org/packages/diablomedia/zendframework1-log-writer-mail)
 [![License](https://poser.pugx.org/diablomedia/zendframework1-log-writer-mail/license)](https://packagist.org/packages/diablomedia/zendframework1-log-writer-mail)
 
+> [!WARNING]  
+> We've archived this repo as we're no longer using or maintaining Zend Framework 1
+
 This is just the Zend_Log_Writer_Mail component extracted from our fork of the Zend Framework 1 repo (https://github.com/diablomedia/zf1).
